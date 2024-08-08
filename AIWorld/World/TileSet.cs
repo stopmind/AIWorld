@@ -22,7 +22,7 @@ public class TileSet : IResource
         var tiles = data["tiles"]!.Value<JArray>()!.Select(o =>
         {
             var pos = size * new Vector2i(o[0]!.Value<int>(), o[1]!.Value<int>());
-            return atlas.SubTexture(new RectI(pos, pos + size));
+            return atlas.SubTexture(new RectI(pos, size));
         }).ToArray();
 
         return new TileSet(size, tiles);

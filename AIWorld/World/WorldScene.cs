@@ -9,8 +9,8 @@ public class WorldScene : Scene
 {
     private GraphicsService? _graphics;
     private Input? _input;
-    private Chunk? _chunk;
     private readonly Camera _camera = new();
+    private Surface? _surface;
     
     public override void Ready()
     {
@@ -25,8 +25,9 @@ public class WorldScene : Scene
         
         _graphics = Game.GetService<GraphicsService>();
         _graphics.FillColor = new Color(0x1c1c1fFF);
-        _chunk = new Chunk(Vector2f.Zero,
-            Game.GetService<ResourcesLoader>().LoadResource<TileSet>("World/tileset.json")!);
+
+        _surface = new Surface(Game.GetService<ResourcesLoader>().LoadResource<TileSet>("World/tileset.json")!);
+        new StdSurfaceGenerator().Generate(_surface, 0);
     }
 
     public override void Update(float delta)
@@ -36,7 +37,7 @@ public class WorldScene : Scene
 
     public override void Draw(float delta)
     {
-        _chunk?.Draw(_graphics!);
+        _surface!.Draw(_graphics!);
     }
 
     public override void OnClose()

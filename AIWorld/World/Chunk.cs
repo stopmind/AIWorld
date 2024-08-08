@@ -18,9 +18,9 @@ public class Chunk(Vector2f position, TileSet tileSet)
             for (var y = 0; y < Size.Y; y++)
             {
                 var pos = tileSet.TileSize * new Vector2i(x, y);
-                graphics.DrawRect(
-                    new RectF(pos.X + Position.X, pos.Y + Position.Y, tileSet.TileSize.X, tileSet.TileSize.Y),
-                    Color.White, tileSet.Tiles[_tiles[x + y * tileSet.TileSize.X]]
+                graphics.DrawSprite(
+                    new Vector2f(pos.X + Position.X, pos.Y + Position.Y),
+                    Color.White, tileSet.Tiles[_tiles[x + y * Size.X]]
                 );
             }
         }
@@ -28,8 +28,8 @@ public class Chunk(Vector2f position, TileSet tileSet)
     }
 
     public int GetTile(Vector2i pos)
-        => _tiles[pos.X + pos.Y * tileSet.TileSize.X];
+        => _tiles[pos.X + pos.Y * Size.X];
     
     public void SetTile(Vector2i pos, int tile)
-        => _tiles[pos.X + pos.Y * tileSet.TileSize.X] = tile;
+        => _tiles[pos.X + pos.Y * Size.X] = tile;
 }

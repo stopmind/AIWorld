@@ -12,7 +12,7 @@ public class Camera
     private const float ZoomMax = 4f;
     
     private Vector2f _position = Vector2f.Zero;
-    private float _zoom = 2;
+    private float _zoom = 0.4f;
 
     public void Update(GraphicsService graphics, Input input, float delta)
     {

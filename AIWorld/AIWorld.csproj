@@ -9,7 +9,11 @@
 
     <ItemGroup>
       <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-      <PackageReference Include="Teko" Version="0.1.7" />
+      <PackageReference Include="Teko" Version="0.1.9" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="FastNoiseLite\" />
     </ItemGroup>
 
 </Project>
