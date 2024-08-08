@@ -25,6 +25,7 @@ public class WorldScene : Scene
         
         _graphics = Game.GetService<GraphicsService>();
         _graphics.FillColor = new Color(0x1c1c1fFF);
+        _graphics.SetLayersCount(2);
 
         _surface = new Surface(Game.GetService<ResourcesLoader>().LoadResource<TileSet>("World/tileset.json")!);
         new StdSurfaceGenerator().Generate(_surface, 0);
@@ -37,7 +38,7 @@ public class WorldScene : Scene
 
     public override void Draw(float delta)
     {
-        _surface!.Draw(_graphics!);
+        _surface!.Draw(_graphics!, _camera);
     }
 
     public override void OnClose()

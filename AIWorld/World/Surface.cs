@@ -39,9 +39,9 @@ public class Surface(TileSet tileSet)
     public void SetTile(Vector2i pos, int tile)
         => GetChunk(GlobalToChunk(pos)).SetTile(GlobalToLocal(pos), tile);
     
-    public void Draw(GraphicsService graphics)
+    public void Draw(GraphicsService graphics, Camera camera)
     {
         foreach (var (_, chunk) in _chunks)
-            chunk.Draw(graphics);
+            chunk.Draw(graphics, camera);
     }
 }

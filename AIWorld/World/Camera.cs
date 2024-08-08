@@ -6,7 +6,7 @@ namespace AIWorld.World;
 
 public class Camera
 {
-    private const float MoveSpeed = 300f;
+    private const float MoveSpeed = 600f;
     private const float ZoomSpeed = 0.8f;
     private const float ZoomMin = 0.4f;
     private const float ZoomMax = 4f;
@@ -14,6 +14,8 @@ public class Camera
     private Vector2f _position = Vector2f.Zero;
     private float _zoom = 0.4f;
 
+    public RectF VisibleArea = new();
+    
     public void Update(GraphicsService graphics, Input input, float delta)
     {
         var move = Vector2f.Zero;
@@ -27,6 +29,11 @@ public class Camera
         if (input.IsDown("camera_zoom"))   zoomChange++;
         if (input.IsDown("camera_unzoom")) zoomChange--;
         _zoom = MathF.Min(ZoomMax, MathF.Max(ZoomMin, _zoom + zoomChange * delta * ZoomSpeed));
+
+        var size = graphics.GetSize().ToFloat() / _zoom;
+
+        VisibleArea.Size = size;
+        VisibleArea.Position = _position - size / 2;
         
         graphics.SetView(0, new View(_position, graphics.GetSize().ToFloat() / _zoom));
     }
